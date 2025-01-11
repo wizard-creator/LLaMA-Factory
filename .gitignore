@@ -173,3 +173,8 @@ output/
 wandb/
 swanlog/
 generated_predictions.jsonl
+
+module/
+data/
+data_raw/
+*.sh
