@@ -1,0 +1,39 @@
+### model
+model_name_or_path: /data/zhangch/TextMining/LLaMA-Factory/module/Meta-Llama-3-8B-Instruct
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+# lora_target: all 默认是all，可以微调更多的参数；显存不够glm4可以用query_key_value 千问2用q_proj,v_proj。
+
+### dataset
+dataset: hh-rlhf-sft
+template: llama3  # 用glm4的话，改为glm4
+cutoff_len: 1024 #文本截断长度
+max_samples: 100000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: ./saves/LLaMA3-8B/lora/hh-rlhf-sft-1
+logging_steps: 10
+save_steps: 100
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+# 确定batch size
+per_device_train_batch_size: 2   # 卡
+gradient_accumulation_steps: 8   # 梯度累计是4
+learning_rate: 5.0e-5  #
+num_train_epochs: 3.0   # 1~5
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+fp16: true
+
+### eval
+val_size: 0.1
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 100

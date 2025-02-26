@@ -498,12 +498,22 @@
         }
     },
     "hh_rlhf_en": {
-        "script_url": "hh_rlhf_en",
+        "file_name": "hh_rlhf_en/train_preference.json",
         "ranking": true,
         "columns": {
             "prompt": "instruction",
             "chosen": "chosen",
             "rejected": "rejected",
+            "history": "history"
+        }
+    },
+    "hh-rlhf-sft": {
+        "file_name": "hh_rlhf_en/train_finetuned.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "system": "system",
             "history": "history"
         }
     },
